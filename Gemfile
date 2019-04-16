@@ -1,9 +1,17 @@
+def next?
+  File.basename(__FILE__) == "Gemfile.next"
+end
+
 source 'https://rubygems.org'
 
 # Load environment variables
 gem 'dotenv-rails', :require => 'dotenv/rails-now'
 
-gem 'rails', '4.2.11.1'
+if next?
+  gem 'rails', '~> 5.0.1'
+else
+  gem 'rails', '4.2.11.1'
+end
 
 gem 'rake'
 gem 'pg', '< 0.21'
@@ -60,6 +68,10 @@ group :test do
   gem 'launchy'
   gem 'webmock'
   gem 'test_after_commit'
+end
+
+group :development do
+  gem 'ten_years_rails'
 end
 
 group :production do
