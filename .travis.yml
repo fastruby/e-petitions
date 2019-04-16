@@ -6,6 +6,9 @@ cache:
     - travis_phantomjs
 rvm:
 - 2.2.6
+gemfile:
+- gemfiles/Gemfile
+- gemfiles/Gemfile.next
 services:
 - memcached
 - postgresql
