@@ -306,8 +306,6 @@ GEM
       rest-client (>= 2.0.2)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
-    test_after_commit (1.1.0)
-      activerecord (>= 3.2)
     textacular (5.1.0)
       activerecord (>= 5.0, < 6.0)
     thor (0.20.3)
@@ -384,7 +382,6 @@ DEPENDENCIES
   simplecov
   slack-notifier
   ten_years_rails
-  test_after_commit
   textacular
   uglifier
   webmock

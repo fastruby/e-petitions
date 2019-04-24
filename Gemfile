@@ -67,7 +67,7 @@ group :test do
   gem 'email_spec'
   gem 'launchy'
   gem 'webmock'
-  gem 'test_after_commit'
+  gem 'test_after_commit' unless next?
 end
 
 group :development do
