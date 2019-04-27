@@ -54,8 +54,10 @@ group :development, :test do
   gem 'pry'
 end
 
+gem 'nokogiri', '~> 1.10.3' if next?
+
 group :test do
-  gem 'nokogiri'
+  gem 'nokogiri' unless next?
   gem 'shoulda-matchers'
   gem 'pickle'
   gem 'cucumber', '~> 2.4.0'
