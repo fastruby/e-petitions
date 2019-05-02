@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/fastruby/ten_years_rails_conf_2018.git
+  revision: 2db8f3885b5bd4618cd90a46de776cf5c03e2e2d
+  branch: fixes/ruby-2-2-syntax-error
+  specs:
+    ten_years_rails (0.2.0)
+      actionview
+      colorize (>= 0.8.1)
+      rest-client (>= 2.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -294,11 +304,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    ten_years_rails (0.2.0)
-      actionview
-      activesupport
-      colorize (>= 0.8.1)
-      rest-client (>= 2.0.2)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     test_after_commit (1.2.2)
@@ -378,7 +383,7 @@ DEPENDENCIES
   shoulda-matchers
   simplecov
   slack-notifier
-  ten_years_rails
+  ten_years_rails!
   test_after_commit
   textacular
   uglifier
@@ -387,4 +392,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.17.3
+   2.0.1

@@ -14,7 +14,7 @@ else
 end
 
 gem 'rake'
-gem 'pg', '< 0.21'
+gem 'pg'
 gem 'authlogic'
 gem 'will_paginate'
 gem 'json'
@@ -65,7 +65,7 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'poltergeist'
-  gem 'factory_bot_rails'
+  gem 'factory_bot_rails', '~> 4.11.1'
   gem 'email_spec'
   gem 'launchy'
   gem 'webmock'
@@ -73,7 +73,9 @@ group :test do
 end
 
 group :development do
-  gem 'ten_years_rails'
+  gem 'ten_years_rails',
+      git: "https://github.com/fastruby/ten_years_rails_conf_2018.git",
+      branch: "fixes/ruby-2-2-syntax-error"
 end
 
 group :production do
