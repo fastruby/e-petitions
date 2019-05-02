@@ -546,15 +546,15 @@ class Signature < ActiveRecord::Base
     update seen_signed_confirmation_page: true
   end
 
-  def save(*args)
-    super
-  rescue ActiveRecord::RecordNotUnique => e
-    if creator?
-      errors.add(:name, :already_signed, name: name, email: email) and return false
-    else
-      raise e
-    end
-  end
+  # def save(*args)
+  #   super
+  # rescue ActiveRecord::RecordNotUnique => e
+  #   if creator?
+  #     errors.add(:name, :already_signed, name: name, email: email) and return false
+  #   else
+  #     raise e
+  #   end
+  # end
 
   def unsubscribe!(token)
     if unsubscribed?
