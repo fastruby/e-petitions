@@ -3,25 +3,25 @@ require 'factory_bot'
 FactoryBot.define do
   factory :admin_user do
     sequence(:email) {|n| "admin#{n}@example.com" }
-    password              "Letmein1!"
-    password_confirmation "Letmein1!"
+    password { "Letmein1!" }
+    password_confirmation { "Letmein1!" }
     sequence(:first_name) {|n| "AdminUser#{n}" }
     sequence(:last_name) {|n| "AdminUser#{n}" }
-    force_password_reset  false
+    force_password_reset { false }
   end
 
   factory :sysadmin_user, :parent => :admin_user do
-    role "sysadmin"
+    role { "sysadmin" }
   end
 
   factory :moderator_user, :parent => :admin_user do
-    role "moderator"
+    role { "moderator" }
   end
 
   factory :archived_debate_outcome, class: "Archived::DebateOutcome" do
     association :petition, factory: :archived_petition
     debated_on { 1.year.ago.to_date }
-    debated true
+    debated { true }
 
     trait :fully_specified do
       overview { 'Discussion of the 2014 Christmas Adjournment - has the house considered everything it needs to before it closes for the festive period?' }
@@ -40,20 +40,20 @@ FactoryBot.define do
   factory :archived_government_response, class: "Archived::GovernmentResponse" do
     association :petition, factory: :archived_petition
     responded_on { 1.year.ago.to_date }
-    details "Government Response Details"
-    summary "Government Response Summary"
+    details { "Government Response Details" }
+    summary { "Government Response Summary" }
   end
 
   factory :archived_note, class: "Archived::Note" do
     association :petition, factory: :archived_petition
-    details "Petition notes"
+    details { "Petition notes" }
   end
 
   factory :archived_petition_email, class: "Archived::Petition::Email" do
     association :petition, factory: :archived_petition
-    subject "Message Subject"
-    body "Message body"
-    sent_by "Admin User"
+    subject { "Message Subject" }
+    body { "Message body" }
+    sent_by { "Admin User" }
   end
 
   factory :archived_petition, class: "Archived::Petition" do
