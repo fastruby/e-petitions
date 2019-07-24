@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+require 'pathname'
+
+# path to your application root.
+APP_ROOT = Pathname.new File.expand_path('../../',  __FILE__)
+
+Dir.chdir APP_ROOT do
+  puts "== Creating databases =="
+  system "rake db:create"
+  system "psql -q -h db -U postgres -f db/structure.sql epets_test"
+end

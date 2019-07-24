@@ -1,0 +1,28 @@
+version: "2"
+
+services:
+  cache:
+    image: memcached:1.4-alpine
+    ports:
+      - "11211:11211"
+    restart: always
+
+  db:
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD:
+    image: postgres:9.6
+    expose:
+      - "5432"
+
+  app:
+    stdin_open: true
+    tty: true
+    restart: always
+    env_file: .env.test
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - cache
