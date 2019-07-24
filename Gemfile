@@ -7,7 +7,7 @@ gem 'rails', '4.2.11.1'
 
 gem 'rake'
 gem 'pg', '< 0.21'
-gem 'authlogic'
+gem 'authlogic', '~> 3.6.1'
 gem 'will_paginate'
 gem 'json'
 gem 'delayed_job_active_record'
@@ -23,10 +23,10 @@ gem 'uglifier'
 gem 'bcrypt'
 gem 'faker'
 gem 'slack-notifier'
-gem 'daemons'
+gem 'daemons', '~> 1.2.5'
 gem 'jquery-rails'
 gem 'delayed-web'
-gem 'dalli'
+gem 'dalli', '2.7.6'
 gem 'connection_pool'
 gem 'lograge'
 gem 'logstash-logger'
@@ -39,7 +39,7 @@ gem 'aws-sdk', '~> 2.0'
 
 group :development, :test do
   gem 'simplecov'
-  gem 'brakeman', require: false
+  gem 'brakeman', '~> 4.5.1', require: false
   gem 'bundler-audit', require: false
   gem 'rspec-rails'
   gem 'jasmine-rails'
@@ -52,9 +52,9 @@ group :test do
   gem 'pickle'
   gem 'cucumber', '~> 2.4.0'
   gem 'cucumber-rails', require: false
-  gem 'database_cleaner'
+  gem 'database_cleaner', '~> 1.6.0'
   gem 'capybara', '~> 3.13.2'
-  gem 'factory_bot_rails'
+  gem 'factory_bot_rails', '~> 4.8.2'
   gem 'email_spec'
   gem 'launchy'
   gem 'webdrivers', '~> 3.8.1'
