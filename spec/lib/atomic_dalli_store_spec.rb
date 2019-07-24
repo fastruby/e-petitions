@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ActiveSupport::Cache::AtomicDalliStore do
+  subject { ActiveSupport::Cache::AtomicDalliStore.new(ENV["MEMCACHE_SERVERS"]) }
   let(:options) do
     { namespace: "epets_test", expires_in: 2.seconds }
   end
