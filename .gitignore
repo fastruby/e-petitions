@@ -30,6 +30,9 @@
 # Ignore deployment packages
 /pkg
 
+# Mac OS 
+.DS_Store
+
 # Dotenv 2.0 uses a .env.local for local overrides
 .env.local
 
