@@ -16,8 +16,6 @@ RUN apt-get update -yqq \
   && apt-get -q clean
 RUN apt-get update
 
-RUN bundle config --global frozen 1
-
 WORKDIR /usr/src/app
 
 COPY Gemfile Gemfile.lock ./
