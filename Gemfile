@@ -38,6 +38,7 @@ gem 'redcarpet'
 gem 'aws-sdk', '~> 2.0'
 
 group :development, :test do
+  gem 'next_rails', '~> 1.0.1'
   gem 'simplecov'
   gem 'brakeman', '~> 4.5.1', require: false
   gem 'bundler-audit', require: false
