@@ -19,9 +19,11 @@ RUN apt-get update
 WORKDIR /usr/src/app
 
 COPY Gemfile Gemfile.lock ./
+COPY Gemfile.next Gemfile.next.lock ./
 
 RUN gem install bundler -v=1.17.3
 
 RUN bundle install
+RUN next bundle install
 
 COPY . .
