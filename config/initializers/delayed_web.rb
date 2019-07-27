@@ -7,13 +7,11 @@ end
 Delayed::Web::ApplicationController.class_eval do
   include Authentication, FlashI18n
 
-  hide_action :admin_request?
+  protected
 
   def admin_request?
     true
   end
-
-  protected
 
   def admin_login_url
     main_app.admin_login_url
