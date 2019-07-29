@@ -55,7 +55,7 @@ RSpec.describe Admin::SitesController, type: :controller, admin: true do
     end
 
     describe "PATCH /admin/site" do
-      before { patch :update, site: params }
+      before { patch :update, params: { site: params } }
 
       context "when the params are invalid" do
         let :params do

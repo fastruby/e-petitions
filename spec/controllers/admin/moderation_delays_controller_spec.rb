@@ -61,7 +61,7 @@ RSpec.describe Admin::ModerationDelaysController, type: :controller, admin: true
 
         before do
           perform_enqueued_jobs do
-            post :create, moderation_delay: params, email_preview: "Email preview"
+            post :create, params: { moderation_delay: params, email_preview: "Email preview" }
           end
         end
 
@@ -145,7 +145,7 @@ RSpec.describe Admin::ModerationDelaysController, type: :controller, admin: true
 
         before do
           perform_enqueued_jobs do
-            post :create, moderation_delay: params, email_creators: "Email creators"
+            post :create, params: { moderation_delay: params, email_creators: "Email creators" }
           end
         end
 

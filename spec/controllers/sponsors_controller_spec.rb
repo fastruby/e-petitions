@@ -10,7 +10,7 @@ RSpec.describe SponsorsController, type: :controller do
     context "when the petition doesn't exist" do
       it "raises an ActiveRecord::RecordNotFound exception" do
         expect {
-          get :new, petition_id: 1, token: 'token'
+          get :new, params: { petition_id: 1, token: 'token' }
         }.to raise_exception(ActiveRecord::RecordNotFound)
       end
     end
@@ -20,7 +20,7 @@ RSpec.describe SponsorsController, type: :controller do
 
       it "raises an ActiveRecord::RecordNotFound exception" do
         expect {
-          get :new, petition_id: petition.id, token: 'token'
+          get :new, params: { petition_id: petition.id, token: 'token' }
         }.to raise_exception(ActiveRecord::RecordNotFound)
       end
     end
@@ -31,7 +31,7 @@ RSpec.describe SponsorsController, type: :controller do
 
       it "validates the creator's signature" do
         expect {
-          get :new, petition_id: petition.id, token: petition.sponsor_token
+          get :new, params: { petition_id: petition.id, token: petition.sponsor_token }
         }.to change {
           creator.reload.validated?
         }.from(false).to(true)
@@ -44,7 +44,7 @@ RSpec.describe SponsorsController, type: :controller do
 
         it "raises an ActiveRecord::RecordNotFound exception" do
           expect {
-            get :new, petition_id: petition.id, token: petition.sponsor_token
+            get :new, params: { petition_id: petition.id, token: petition.sponsor_token }
           }.to raise_exception(ActiveRecord::RecordNotFound)
         end
       end
@@ -55,7 +55,7 @@ RSpec.describe SponsorsController, type: :controller do
         let(:petition) { FactoryBot.create(:"#{state}_petition") }
 
         before do
-          get :new, petition_id: petition.id, token: petition.sponsor_token
+          get :new, params: { petition_id: petition.id, token: petition.sponsor_token }
         end
 
         it "assigns the @petition instance variable" do
@@ -94,7 +94,7 @@ RSpec.describe SponsorsController, type: :controller do
           cookies.encrypted["jcr0DcYQXio18qKDBGw"] = "2019-04-16T06:00:00Z"
           cookies.encrypted["G0WnZSxal6vmZkFYnzY"] = "2019-04-18T04:00:00Z"
 
-          get :new, petition_id: petition.id, token: petition.sponsor_token
+          get :new, params: { petition_id: petition.id, token: petition.sponsor_token }
         end
 
         it "assigns the @petition instance variable" do
@@ -174,7 +174,7 @@ RSpec.describe SponsorsController, type: :controller do
     context "when the petition doesn't exist" do
       it "raises an ActiveRecord::RecordNotFound exception" do
         expect {
-          post :confirm, petition_id: 1, token: 'token', signature: params
+          post :confirm, params: { petition_id: 1, token: 'token', signature: params }
         }.to raise_exception(ActiveRecord::RecordNotFound)
       end
     end
@@ -184,7 +184,7 @@ RSpec.describe SponsorsController, type: :controller do
 
       it "raises an ActiveRecord::RecordNotFound exception" do
         expect {
-          post :confirm, petition_id: petition.id, token: 'token', signature: params
+          post :confirm, params: { petition_id: petition.id, token: 'token', signature: params }
         }.to raise_exception(ActiveRecord::RecordNotFound)
       end
     end
@@ -195,7 +195,7 @@ RSpec.describe SponsorsController, type: :controller do
 
         it "raises an ActiveRecord::RecordNotFound exception" do
           expect {
-            post :confirm, petition_id: petition.id, token: petition.sponsor_token, signature: params
+            post :confirm, params: { petition_id: petition.id, token: petition.sponsor_token, signature: params }
           }.to raise_exception(ActiveRecord::RecordNotFound)
         end
       end
@@ -206,7 +206,7 @@ RSpec.describe SponsorsController, type: :controller do
         let(:petition) { FactoryBot.create(:"#{state}_petition") }
 
         before do
-          post :confirm, petition_id: petition.id, token: petition.sponsor_token, signature: params
+          post :confirm, params: { petition_id: petition.id, token: petition.sponsor_token, signature: params }
         end
 
         it "assigns the @petition instance variable" do
@@ -236,7 +236,7 @@ RSpec.describe SponsorsController, type: :controller do
             }
           }
 
-          post :confirm, petition_id: petition.id, token: petition.sponsor_token, signature: params
+          post :confirm, params: { petition_id: petition.id, token: petition.sponsor_token, signature: params }
         end
 
         it "assigns the @petition instance variable" do
@@ -314,7 +314,7 @@ RSpec.describe SponsorsController, type: :controller do
     context "when the petition doesn't exist" do
       it "raises an ActiveRecord::RecordNotFound exception" do
         expect {
-          post :create, petition_id: 1, token: 'token', signature: params
+          post :create, params: { petition_id: 1, token: 'token', signature: params }
         }.to raise_exception(ActiveRecord::RecordNotFound)
       end
     end
@@ -324,7 +324,7 @@ RSpec.describe SponsorsController, type: :controller do
 
       it "raises an ActiveRecord::RecordNotFound exception" do
         expect {
-          post :create, petition_id: petition.id, token: 'token', signature: params
+          post :create, params: { petition_id: petition.id, token: 'token', signature: params }
         }.to raise_exception(ActiveRecord::RecordNotFound)
       end
     end
@@ -335,7 +335,7 @@ RSpec.describe SponsorsController, type: :controller do
 
         it "raises an ActiveRecord::RecordNotFound exception" do
           expect {
-            post :create, petition_id: petition.id, token: petition.sponsor_token, signature: params
+            post :create, params: { petition_id: petition.id, token: petition.sponsor_token, signature: params }
           }.to raise_exception(ActiveRecord::RecordNotFound)
         end
       end
@@ -346,7 +346,7 @@ RSpec.describe SponsorsController, type: :controller do
         let(:petition) { FactoryBot.create(:"#{state}_petition") }
 
         before do
-          post :create, petition_id: petition.id, token: petition.sponsor_token, signature: params
+          post :create, params: { petition_id: petition.id, token: petition.sponsor_token, signature: params }
         end
 
         it "assigns the @petition instance variable" do
@@ -380,7 +380,7 @@ RSpec.describe SponsorsController, type: :controller do
             }
 
             perform_enqueued_jobs {
-              post :create, petition_id: petition.id, token: petition.sponsor_token, signature: params
+              post :create, params: { petition_id: petition.id, token: petition.sponsor_token, signature: params }
             }
           end
 
@@ -443,7 +443,7 @@ RSpec.describe SponsorsController, type: :controller do
 
           before do
             perform_enqueued_jobs {
-              post :create, petition_id: petition.id, token: petition.sponsor_token, signature: params
+              post :create, params: { petition_id: petition.id, token: petition.sponsor_token, signature: params }
             }
           end
 
@@ -472,7 +472,7 @@ RSpec.describe SponsorsController, type: :controller do
             allow(Site).to receive(:disable_plus_address_check?).and_return(true)
 
             perform_enqueued_jobs {
-              post :create, petition_id: petition.id, token: petition.sponsor_token, signature: params.merge(email: "ted+petitions@example.com")
+              post :create, params: { petition_id: petition.id, token: petition.sponsor_token, signature: params.merge(email: "ted+petitions@example.com") }
             }
           end
 
@@ -499,7 +499,7 @@ RSpec.describe SponsorsController, type: :controller do
 
           before do
             perform_enqueued_jobs {
-              post :create, petition_id: petition.id, token: petition.sponsor_token, signature: params
+              post :create, params: { petition_id: petition.id, token: petition.sponsor_token, signature: params }
             }
           end
 
@@ -528,7 +528,7 @@ RSpec.describe SponsorsController, type: :controller do
             allow(Site).to receive(:disable_plus_address_check?).and_return(true)
 
             perform_enqueued_jobs {
-              post :create, petition_id: petition.id, token: petition.sponsor_token, signature: params.merge(email: "ted+petitions@example.com")
+              post :create, params: { petition_id: petition.id, token: petition.sponsor_token, signature: params.merge(email: "ted+petitions@example.com") }
             }
           end
 
@@ -555,7 +555,7 @@ RSpec.describe SponsorsController, type: :controller do
 
           before do
             perform_enqueued_jobs {
-              post :create, petition_id: petition.id, token: petition.sponsor_token, signature: params
+              post :create, params: { petition_id: petition.id, token: petition.sponsor_token, signature: params }
             }
           end
 
@@ -569,7 +569,7 @@ RSpec.describe SponsorsController, type: :controller do
 
           before do
             perform_enqueued_jobs {
-              post :create, petition_id: petition.id, token: petition.sponsor_token, signature: params
+              post :create, params: { petition_id: petition.id, token: petition.sponsor_token, signature: params }
             }
           end
 
@@ -585,7 +585,7 @@ RSpec.describe SponsorsController, type: :controller do
     context "when the petition doesn't exist" do
       it "raises an ActiveRecord::RecordNotFound exception" do
         expect {
-          get :thank_you, petition_id: 1, token: 'token'
+          get :thank_you, params: { petition_id: 1, token: 'token' }
         }.to raise_exception(ActiveRecord::RecordNotFound)
       end
     end
@@ -595,7 +595,7 @@ RSpec.describe SponsorsController, type: :controller do
 
       it "raises an ActiveRecord::RecordNotFound exception" do
         expect {
-          get :thank_you, petition_id: petition.id, token: 'token'
+          get :thank_you, params: { petition_id: petition.id, token: 'token' }
         }.to raise_exception(ActiveRecord::RecordNotFound)
       end
     end
@@ -606,7 +606,7 @@ RSpec.describe SponsorsController, type: :controller do
 
         it "raises an ActiveRecord::RecordNotFound exception" do
           expect {
-            get :thank_you, petition_id: petition.id, token: petition.sponsor_token
+            get :thank_you, params: { petition_id: petition.id, token: petition.sponsor_token }
           }.to raise_exception(ActiveRecord::RecordNotFound)
         end
       end
@@ -617,7 +617,7 @@ RSpec.describe SponsorsController, type: :controller do
         let(:petition) { FactoryBot.create(:"#{state}_petition") }
 
         before do
-          get :thank_you, petition_id: petition.id, token: petition.sponsor_token
+          get :thank_you, params: { petition_id: petition.id, token: petition.sponsor_token }
         end
 
         it "assigns the @petition instance variable" do
@@ -640,7 +640,7 @@ RSpec.describe SponsorsController, type: :controller do
         let(:signature) { FactoryBot.create(:validated_signature, :just_signed, petition: petition) }
 
         before do
-          get :thank_you, petition_id: petition.id, token: petition.sponsor_token
+          get :thank_you, params: { petition_id: petition.id, token: petition.sponsor_token }
         end
 
         it "assigns the @petition instance variable" do
@@ -682,7 +682,7 @@ RSpec.describe SponsorsController, type: :controller do
     context "when the signature doesn't exist" do
       it "raises an ActiveRecord::RecordNotFound exception" do
         expect {
-          get :verify, id: 1, token: "token"
+          get :verify, params: { id: 1, token: "token" }
         }.to raise_exception(ActiveRecord::RecordNotFound)
       end
     end
@@ -693,7 +693,7 @@ RSpec.describe SponsorsController, type: :controller do
 
       it "raises an ActiveRecord::RecordNotFound exception" do
         expect {
-          get :verify, id: signature.id, token: "token"
+          get :verify, params: { id: signature.id, token: "token" }
         }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
@@ -704,7 +704,7 @@ RSpec.describe SponsorsController, type: :controller do
 
       it "doesn't raise an ActiveRecord::RecordNotFound exception" do
         expect {
-          get :verify, id: signature.id, token: signature.perishable_token
+          get :verify, params: { id: signature.id, token: signature.perishable_token }
         }.not_to raise_error
       end
     end
@@ -715,7 +715,7 @@ RSpec.describe SponsorsController, type: :controller do
 
       it "doesn't raise an ActiveRecord::RecordNotFound exception" do
         expect {
-          get :verify, id: signature.id, token: signature.perishable_token
+          get :verify, params: { id: signature.id, token: signature.perishable_token }
         }.not_to raise_error
       end
     end
@@ -727,7 +727,7 @@ RSpec.describe SponsorsController, type: :controller do
 
         it "raises an ActiveRecord::RecordNotFound exception" do
           expect {
-            get :verify, id: signature.id, token: signature.perishable_token
+            get :verify, params: { id: signature.id, token: signature.perishable_token }
           }.to raise_exception(ActiveRecord::RecordNotFound)
         end
       end
@@ -739,7 +739,7 @@ RSpec.describe SponsorsController, type: :controller do
         let(:signature) { FactoryBot.create(:pending_signature, petition: petition, sponsor: true) }
 
         before do
-          get :verify, id: signature.id, token: signature.perishable_token
+          get :verify, params: { id: signature.id, token: signature.perishable_token }
         end
 
         it "assigns the @signature instance variable" do
@@ -768,7 +768,7 @@ RSpec.describe SponsorsController, type: :controller do
         }
 
         perform_enqueued_jobs {
-          get :verify, id: signature.id, token: signature.perishable_token
+          get :verify, params: { id: signature.id, token: signature.perishable_token }
         }
       end
 
@@ -838,7 +838,7 @@ RSpec.describe SponsorsController, type: :controller do
         }
 
         perform_enqueued_jobs {
-          get :verify, id: signature.id, token: signature.perishable_token
+          get :verify, params: { id: signature.id, token: signature.perishable_token }
         }
       end
 
@@ -986,7 +986,7 @@ RSpec.describe SponsorsController, type: :controller do
         }
 
         perform_enqueued_jobs {
-          get :verify, id: signature.id, token: signature.perishable_token
+          get :verify, params: { id: signature.id, token: signature.perishable_token }
         }
       end
 
@@ -1080,7 +1080,7 @@ RSpec.describe SponsorsController, type: :controller do
     context "when the signature doesn't exist" do
       it "raises an ActiveRecord::RecordNotFound exception" do
         expect {
-          get :signed, id: 1
+          get :signed, params: { id: 1 }
         }.to raise_exception(ActiveRecord::RecordNotFound)
       end
     end
@@ -1090,7 +1090,7 @@ RSpec.describe SponsorsController, type: :controller do
       let(:signature) { FactoryBot.create(:pending_signature, petition: petition, sponsor: true) }
 
       it "redirects to the petition moderation info page" do
-        get :signed, id: signature.id
+        get :signed, params: { id: signature.id }
         expect(response).to redirect_to("/petitions/#{petition.id}/moderation-info")
       end
     end
@@ -1101,7 +1101,7 @@ RSpec.describe SponsorsController, type: :controller do
 
       it "doesn't raise an ActiveRecord::RecordNotFound exception" do
         expect {
-          get :signed, id: signature.id
+          get :signed, params: { id: signature.id }
         }.not_to raise_error
       end
     end
@@ -1112,7 +1112,7 @@ RSpec.describe SponsorsController, type: :controller do
 
       it "doesn't raise an ActiveRecord::RecordNotFound exception" do
         expect {
-          get :signed, id: signature.id
+          get :signed, params: { id: signature.id }
         }.not_to raise_error
       end
     end
@@ -1124,7 +1124,7 @@ RSpec.describe SponsorsController, type: :controller do
 
         it "raises an ActiveRecord::RecordNotFound exception" do
           expect {
-            get :signed, id: signature.id
+            get :signed, params: { id: signature.id }
           }.to raise_exception(ActiveRecord::RecordNotFound)
         end
       end
@@ -1137,7 +1137,7 @@ RSpec.describe SponsorsController, type: :controller do
 
         before do
           session[:signed_tokens] = { signature.id.to_s => signature.signed_token }
-          get :signed, id: signature.id
+          get :signed, params: { id: signature.id }
         end
 
         it "assigns the @signature instance variable" do
@@ -1166,7 +1166,7 @@ RSpec.describe SponsorsController, type: :controller do
         context "when the signature has been validated" do
           before do
             session[:signed_tokens] = { signature.id.to_s => signature.signed_token }
-            get :signed, id: signature.id
+            get :signed, params: { id: signature.id }
           end
 
           it "assigns the @signature instance variable" do
@@ -1250,7 +1250,7 @@ RSpec.describe SponsorsController, type: :controller do
           let(:signature) { FactoryBot.create(:pending_signature, petition: petition, sponsor: true) }
 
           before do
-            get :signed, id: signature.id
+            get :signed, params: { id: signature.id }
           end
 
           it "redirects to the petition moderation info page" do

@@ -55,7 +55,7 @@ RSpec.describe Admin::RateLimitsController, type: :controller, admin: true do
     end
 
     describe "PATCH /admin/rate-limits" do
-      before { patch :update, rate_limit: params }
+      before { patch :update, params: { rate_limit: params } }
 
       context "when the params are invalid" do
         let :params do
