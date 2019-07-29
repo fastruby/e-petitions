@@ -52,6 +52,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'jasmine-rails'
   gem 'pry'
+  gem 'rubocop'
+  gem 'rubocop-rails'
 end
 
 group :test do
