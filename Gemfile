@@ -55,6 +55,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'rails-controller-testing' if next?
   gem 'nokogiri'
   gem 'shoulda-matchers'
   gem 'pickle'
