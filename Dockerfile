@@ -16,12 +16,19 @@ RUN apt-get update -yqq \
   && apt-get -q clean
 RUN apt-get update
 
+RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 
-COPY Gemfile Gemfile.lock ./
+COPY Gemfile /usr/src/app/Gemfile
+COPY Gemfile.lock /usr/src/app/Gemfile.lock
 
 RUN gem install bundler -v=1.17.3
 
+ENV GEM_HOME="/usr/local/bundle"
+ENV PATH $GEM_HOME/bin:$GEM_HOME/gems/bin:$PATH
+
 RUN bundle install
 
-COPY . .
+COPY . /usr/src/app/
+
+ENTRYPOINT ./bin/docker-entrypoint.sh

@@ -27,4 +27,4 @@ services:
       - db
       - cache
     volumes:
-      - .:/usr/src/app:consistent
+      - .:/usr/src/app
