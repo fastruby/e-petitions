@@ -38,6 +38,7 @@ gem 'redcarpet'
 gem 'aws-sdk', '~> 2.0'
 
 group :development, :test do
+  gem 'metric_fu', git: 'git@github.com:metricfu/metric_fu.git'
   gem 'simplecov'
   gem 'brakeman', require: false
   gem 'bundler-audit', require: false
