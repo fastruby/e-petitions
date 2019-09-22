@@ -44,6 +44,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'jasmine-rails'
   gem 'pry'
+  gem 'rubycritic'
 end
 
 group :test do
