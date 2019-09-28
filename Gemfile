@@ -44,6 +44,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'jasmine-rails'
   gem 'pry'
+  gem 'attractor'
 end
 
 group :test do
