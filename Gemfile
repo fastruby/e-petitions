@@ -44,6 +44,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'jasmine-rails'
   gem 'pry'
+  gem 'metric_fu', git: "git@github.com:fastruby/metric_fu.git"
 end
 
 group :test do
